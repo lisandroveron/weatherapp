@@ -1,0 +1,118 @@
+/* - - - - - V A R S - A N D - F O N T S - - - - - */
+.appContainer{
+	--fsize1: 1rem;
+	--fsize2: calc(var(--fsize1) * 2);
+	--fsize3: calc(var(--fsize1) * 3);
+}
+/* - - - - E N D - V A R S - A N D - F O N T S - E N D - - - - */
+
+/* - - - - - G R I D - - - - - */
+.appContainer{
+	align-self: center;
+	display: grid;
+	grid-template-areas: "place empty1 info"
+						 "empty2 empty2 empty2"
+						 "cards cards cards";
+	grid-template-columns: auto 1fr auto;
+	grid-template-rows: 50% 1fr 25%;
+	justify-self: center;
+}
+.place{
+	grid-area: place;
+}
+.info{
+	grid-area: info;
+}
+.info article{
+	display: grid;
+	grid-template-columns: 2em 1fr;
+	grid-template-rows: auto auto;
+	grid-template-areas: "icon legend"
+						 "icon value";
+	column-gap: 5px;
+}
+.info article img{
+	grid-area: icon;
+	justify-self: center;
+	align-self: center;
+}
+.info article p:nth-child(2){
+	grid-area: legend;
+}
+.info article p:nth-child(3){
+	grid-area: value;
+}
+.cards{
+	grid-area: cards;
+}
+/* - - - - E N D - G R I D - E N D - - - - */
+
+/* - - - - - F L E X - - - - - */
+.info{
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-shrink: 1;
+}
+.cards{
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	flex-shrink: 1;
+}
+/* - - - - E N D - F L E X - E N D - - - - */
+
+/* - - - - - S T Y L E S - - - - - */
+.background{
+	filter: blur(10px);
+	height: 100%;
+	position: absolute;
+	transform: scale(1.05);
+	width: 100%;
+	z-index: -1;
+}
+.appContainer{
+	color: white;
+	padding: 10px;
+	height: 90%;
+	position: relative;
+	width: 90%;
+}
+.background, .appContainer{
+	background-image: url("../assets/img/morning1.jpg");
+	background-position: center;
+	background-size: cover;
+}
+.place h3{
+	font-size: var(--fsize3);
+}
+.info{
+	overflow-y: auto;
+}
+.info article p:nth-child(3){
+	font-size: var(--fsize2);
+}
+.cards{
+	overflow-x: auto;
+}
+/* - - - - E N D - S T Y L E S - E N D - - - - */
+
+/* - - - - - B R E A K P O I N T S - - - - - */
+@media screen and (max-width: 960px){
+
+}
+@media screen and (max-width: 600px){
+	.appContainer{
+		grid-template-rows: auto 1fr 25%;
+		grid-template-columns: 1fr;
+		grid-template-areas: "place"
+							 "info"
+							 "cards";
+		grid-row-gap: 50px;
+	}
+	.cards{
+		column-gap: 25px;
+	}
+}
+/* - - - - E N D - B R E A K P O I N T S - E N D - - - - */
