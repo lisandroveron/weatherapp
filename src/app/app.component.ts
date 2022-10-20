@@ -55,17 +55,17 @@ export class AppComponent {
 			};
 			// Setting icon URL
 			switch(this.data.dataseries[i].weather){
-				case "clearday": this.data.dataseries[i].weather = ("../../../assets/icons/sun.svg"); break;
-				case "clearnight": this.data.dataseries[i].weather = ("../../../assets/icons/moon.svg"); break;
-				case "pcloudyday": this.data.dataseries[i].weather = ("../../../assets/icons/partialsun.svg"); break;
-				case "pcloudynight": this.data.dataseries[i].weather = ("../../../assets/icons/partialmoon.svg"); break;
+				case "clearday": this.data.dataseries[i].weather = ("assets/icons/sun.svg"); break;
+				case "clearnight": this.data.dataseries[i].weather = ("assets/icons/moon.svg"); break;
+				case "pcloudyday": this.data.dataseries[i].weather = ("assets/icons/partialsun.svg"); break;
+				case "pcloudynight": this.data.dataseries[i].weather = ("assets/icons/partialmoon.svg"); break;
 				case "mcloudyday":
-				case "mcloudynight": this.data.dataseries[i].weather = ("../../../assets/icons/cloud.svg"); break;
+				case "mcloudynight": this.data.dataseries[i].weather = ("assets/icons/cloud.svg"); break;
 				case "cloudyday":
-				case "cloudynight": this.data.dataseries[i].weather = ("../../../assets/icons/cloudy.svg"); break;
-				case "lightrainday": this.data.dataseries[i].weather = ("../../../assets/icons/rainyday.svg"); break;
-				case "lightrainnight": this.data.dataseries[i].weather = ("../../../assets/icons/rainynight.svg"); break;
-				default: this.data.dataseries[i].weather = ("../../../assets/icons/rain.svg"); break;
+				case "cloudynight": this.data.dataseries[i].weather = ("assets/icons/cloudy.svg"); break;
+				case "lightrainday": this.data.dataseries[i].weather = ("assets/icons/rainyday.svg"); break;
+				case "lightrainnight": this.data.dataseries[i].weather = ("assets/icons/rainynight.svg"); break;
+				default: this.data.dataseries[i].weather = ("assets/icons/rain.svg"); break;
 			};
 		};
 	};
