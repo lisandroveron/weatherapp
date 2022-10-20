@@ -8,9 +8,67 @@ import { StoreService } from "./services/store.service";
 })
 export class AppComponent {
 	data:any;
+	meteo:any;
 
 	constructor(public store: StoreService){
-		store.getData().subscribe((data:any) => this.data = data);
+		store.getData().subscribe((data:any) => {
+			this.data = data;
+			this.setInfo();
+		});
+		store.getMeteo().subscribe((meteo:any) => {
+			this.meteo = meteo;
+		});
 	};
 	
+	// This function is to format info getted by the API
+	private setInfo(){
+		let dataLength:number = this.data.dataseries.length;
+		let j:number = 0;
+		for(let i = 0; i < dataLength; i++){
+			// Setting snow depth
+			switch(this.meteo.dataseries[i].snow_depth){
+				case 0: this.meteo.dataseries[i].snow_depth = "0"; break;
+				case 1: this.meteo.dataseries[i].snow_depth = "0-1"; break;
+				case 2: this.meteo.dataseries[i].snow_depth = "1-5"; break;
+				case 3: this.meteo.dataseries[i].snow_depth = "5-10"; break;
+				case 4: this.meteo.dataseries[i].snow_depth = "10-25"; break;
+				case 5: this.meteo.dataseries[i].snow_depth = "25-50"; break;
+				case 6: this.meteo.dataseries[i].snow_depth = "50-100"; break;
+				case 7: this.meteo.dataseries[i].snow_depth = "100-150"; break;
+				case 8: this.meteo.dataseries[i].snow_depth = "150-250"; break;
+				case 9: this.meteo.dataseries[i].snow_depth = "250+"; break;
+			};
+			// Setting hour
+			switch(j){
+				case 0: this.data.dataseries[i].timepoint = "03:00"; break;
+				case 1: this.data.dataseries[i].timepoint = "06:00"; break;
+				case 2: this.data.dataseries[i].timepoint = "09:00"; break;
+				case 3: this.data.dataseries[i].timepoint = "12:00"; break;
+				case 4: this.data.dataseries[i].timepoint = "15:00"; break;
+				case 5: this.data.dataseries[i].timepoint = "18:00"; break;
+				case 6: this.data.dataseries[i].timepoint = "21:00"; break;
+				case 7: this.data.dataseries[i].timepoint = "24:00"; break;
+			};
+			j++;
+			if(j === 8){
+				j = 0;
+			};
+			// Setting icon URL
+			switch(this.data.dataseries[i].weather){
+				case "clearday": this.data.dataseries[i].weather = ("../../../assets/icons/sun.svg"); break;
+				case "clearnight": this.data.dataseries[i].weather = ("../../../assets/icons/moon.svg"); break;
+				case "pcloudyday": this.data.dataseries[i].weather = ("../../../assets/icons/partialsun.svg"); break;
+				case "pcloudynight": this.data.dataseries[i].weather = ("../../../assets/icons/partialmoon.svg"); break;
+				case "mcloudyday":
+				case "mcloudynight": this.data.dataseries[i].weather = ("../../../assets/icons/cloud.svg"); break;
+				case "cloudyday":
+				case "cloudynight": this.data.dataseries[i].weather = ("../../../assets/icons/cloudy.svg"); break;
+				case "lightrainday": this.data.dataseries[i].weather = ("../../../assets/icons/rainyday.svg"); break;
+				case "lightrainnight": this.data.dataseries[i].weather = ("../../../assets/icons/rainynight.svg"); break;
+				default: this.data.dataseries[i].weather = ("../../../assets/icons/rain.svg"); break;
+			};
+		};
+	};
 };
+
+// Object.keys(timepoint).length

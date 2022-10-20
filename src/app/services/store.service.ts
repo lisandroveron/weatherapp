@@ -14,5 +14,8 @@ export class StoreService {
 	getData(){
 		return this.http.get("https://www.7timer.info/bin/api.pl?lon=-58.3&lat=-34.8&product=civil&output=json");
 	};
+	getMeteo(){
+		return this.http.get("https://www.7timer.info/bin/api.pl?lon=-58.370111&lat=-34.887779&product=meteo&output=json");
+	};
 
 };

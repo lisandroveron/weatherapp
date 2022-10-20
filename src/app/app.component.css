@@ -64,6 +64,9 @@
 /* - - - - E N D - F L E X - E N D - - - - */
 
 /* - - - - - S T Y L E S - - - - - */
+*{
+	/*filter: drop-shadow(3px 3px 2px rgba(17, 17, 17, 0.1));*/
+}
 .background{
 	filter: blur(10px);
 	height: 100%;
@@ -74,15 +77,29 @@
 }
 .appContainer{
 	color: white;
-	padding: 10px;
+	padding: 15px 20px;
 	height: 90%;
 	position: relative;
 	width: 90%;
+	border-radius: 25px;
+	border: 1px solid grey;
 }
 .background, .appContainer{
-	background-image: url("../assets/img/morning1.jpg");
+	background-image: url("../assets/img/sunset.jpg");
 	background-position: center;
 	background-size: cover;
+}
+.place>*{
+	margin-bottom: 20px;
+}
+.place>*:last-child{
+	margin-bottom: 0;
+}
+.place h1{
+	font-size: var(--fsize1);
+}
+.place h2{
+	font-size: var(--fsize2);
 }
 .place h3{
 	font-size: var(--fsize3);
@@ -109,10 +126,20 @@
 		grid-template-areas: "place"
 							 "info"
 							 "cards";
-		grid-row-gap: 50px;
+		grid-row-gap: 35px;
+	}
+	.place>*{
+		margin-bottom: 10px;
+	}
+	.place>*:last-child{
+		margin-bottom: 0;
+	}
+	.info article p:nth-child(3){
+		font-size: calc(var(--fsize2) - 0.5rem);
+		font-weight: normal;
 	}
 	.cards{
-		column-gap: 25px;
+		column-gap: 40px;
 	}
 }
 /* - - - - E N D - B R E A K P O I N T S - E N D - - - - */

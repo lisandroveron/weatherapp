@@ -1,13 +1,26 @@
+/* - - - - - G R I D - - - - - */
 :host{
 	display: grid;
-	grid-template-columns: minmax(75px, auto);
-	grid-template-rows: auto auto 1fr;
+	grid-template-columns: 75px;
+	grid-template-rows: auto 2fr 1fr;
 	justify-items: center;
 	align-items: center;
 }
 h2{
 	align-self: start;
 }
+/* - - - - E N D - G R I D - E N D - - - - */
+
+/* - - - - - S T Y L E S - - - - - */
 h3{
 	font-size: 2em;
 }
+/* - - - - E N D - S T Y L E S - E N D - - - - */
+
+/* - - - - - R E S P O N S I V E - - - - - */
+@media screen and (max-width: 600px){
+	h2, h3{
+		font-weight: normal;
+	}
+}
+/* - - - - E N D - R E S P O N S I V E - E N D - - - - */
