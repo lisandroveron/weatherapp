@@ -2,8 +2,15 @@
 <div class="appContainer" [style]="background">
 	<section class="place">
 		<h1>Weather App</h1>
-		<h2>BUENOS AIRES</h2>
+		<h2>{{country}}</h2>
 		<h3>{{data.dataseries[hour].temp2m}}°C</h3>
+		<div>
+			<img src="../assets/icons/location.svg" alt="">
+			<select (change)="setCountry($event)">
+				<option value="">Choose location</option>
+				<option *ngFor="let country of countries; let i = index" [value]="i">{{country.name}}</option>
+			</select>
+		</div>
 	</section>
 	<section class="info">
 		<article>
@@ -33,3 +40,13 @@
 		</ng-container>
 	</section>
 </div>
+
+<!-- <input type="search" list="countriesList" placeholder="Choose location">
+	<datalist id="countriesList">
+		<option *ngFor="let country of countries; let i = index" [value]="country.name" (change)="setCountry($event)"></option>
+	</datalist> -->
+
+<!-- <select>
+				<option value="">Choose location</option>
+				<option *ngFor="let country of countries; let i = index" [value]="i" (click)="setCountry($event)">{{country.name}}</option>
+			</select> -->

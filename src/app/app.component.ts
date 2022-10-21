@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from "./services/store.service";
+import * as countriesJSON from "../assets/text/countries.json";
 
 @Component({
   selector: 'app-root',
@@ -9,19 +10,28 @@ import { StoreService } from "./services/store.service";
 export class AppComponent {
 	// Data object from API.
 	data:any;
+	// Countries data from local JSON.
+	countries:any = (countriesJSON as any).default;
 	// Formatted hour for pass to Card component.
 	hour:number;
 	// Background image URL for App.
 	background:string;
+	// Parameters for new API calls after the user select a new location.
+	country:string = "Buenos Aires";
+	lon:number = -58.3;
+	lat:number = -34.8;
 
 	constructor(public store: StoreService){
-		store.getData().subscribe((data:any) => {
-			this.data = data;
-			this.setInfo();
-			console.log(data);
-		});
+		this.setData();
 	};
 	
+	setData(){
+		this.store.getData(this.lon, this.lat).subscribe((data:any) => {
+			this.data = data;
+			this.setInfo();
+		});
+	};
+
 	// This function is to format info getted from API.
 	private setInfo(){
 		// Setting 'hour' variable as index based in current hour. It will be used to select the apropiate 'data.dataseries[hour]' property.
@@ -128,6 +138,7 @@ export class AppComponent {
 			if(j === 8){
 				j = 0;
 			};
+			// Setting pressure
 			if(this.data.dataseries[i].msl_pressure == -9999){
 				this.data.dataseries[i].msl_pressure = "No data";
 			}else{
@@ -135,8 +146,17 @@ export class AppComponent {
 			};
 		};
 	};
+
+	setCountry(e:any){
+		console.log(e);
+		this.country = this.countries[e.target.value].name;
+		this.lat = this.countries[e.target.value].latitude;
+		this.lon = this.countries[e.target.value].longitude;
+		this.setData();
+	};
+
 };
 
-// For deployment, change the paths in:
+// For deployment, change the '../assets' paths in:
 // 1- './src/app/app.component.html'
 // 2- './src/app/app.component.ts'
