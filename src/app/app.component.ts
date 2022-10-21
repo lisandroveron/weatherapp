@@ -7,18 +7,22 @@ import { StoreService } from "./services/store.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+	// Data object from API.
 	data:any;
+	// Formatted hour for pass to Card component.
 	hour:number;
+	// Background image URL for App.
 	background:string;
 
 	constructor(public store: StoreService){
 		store.getData().subscribe((data:any) => {
 			this.data = data;
 			this.setInfo();
+			console.log(data);
 		});
 	};
 	
-	// This function is to format info getted by the API
+	// This function is to format info getted from API.
 	private setInfo(){
 		// Setting 'hour' variable as index based in current hour. It will be used to select the apropiate 'data.dataseries[hour]' property.
 		let currentDate:Date = new Date();
@@ -123,6 +127,11 @@ export class AppComponent {
 			j++;
 			if(j === 8){
 				j = 0;
+			};
+			if(this.data.dataseries[i].msl_pressure == -9999){
+				this.data.dataseries[i].msl_pressure = "No data";
+			}else{
+				this.data.dataseries[i].msl_pressure = `${this.data.dataseries[i].msl_pressure} Pa`;
 			};
 		};
 	};
