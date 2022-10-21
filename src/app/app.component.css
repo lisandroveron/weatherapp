@@ -77,8 +77,8 @@
 	display: grid;
 	align-items: center;
 	justify-items: center;
+	background-color: rgb(17, 17, 17);
 	position: absolute;
-	background-color: #111111;
 	height: 100%;
 	width: 100%;
 	z-index: 10;
@@ -157,6 +157,29 @@
 @keyframes iconrotate{
 	100%{
 		transform: rotate(360deg);
+	}
+}
+.loading{
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+@keyframes loadingAppear{
+	from{
+		z-index: 10;
+		background-color: transparent;
+	}
+	to{
+		background-color: rgba(17, 17, 17, 0.5);
+	}
+}
+@keyframes loadingDisappear{
+	from{
+		background-color: rgba(17, 17, 17, 0.5);
+	}
+	to{
+		background-color: rgba(17, 17, 17, 0);
+		z-index: -1;
 	}
 }
 /* - - - - E N D - A N I M A T I O N - E N D - - - - */

@@ -159,8 +159,8 @@ export class AppComponent {
 
 	isLoading(turn:string){
 		switch(turn){
-			case "On": this.loading = "display: grid;"; break;
-			case "Off": this.loading = "display: none;"; break;
+			case "On": this.loading = "animation-name: loadingAppear;"; break;
+			case "Off": this.loading = "animation-name: loadingDisappear;"; break;
 			default: break;
 		};
 	};
