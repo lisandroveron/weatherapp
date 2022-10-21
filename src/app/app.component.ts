@@ -16,6 +16,7 @@ export class AppComponent {
 	hour:number;
 	// Background image URL for App.
 	background:string;
+	loading:string;
 	// Parameters for new API calls after the user select a new location.
 	country:string = "Buenos Aires";
 	lon:number = -58.3;
@@ -29,6 +30,7 @@ export class AppComponent {
 		this.store.getData(this.lon, this.lat).subscribe((data:any) => {
 			this.data = data;
 			this.setInfo();
+			this.isLoading("Off");
 		});
 	};
 
@@ -148,12 +150,20 @@ export class AppComponent {
 	};
 
 	setCountry(e:any){
+		this.isLoading("On");
 		this.country = this.countries[e.target.value].name;
 		this.lat = this.countries[e.target.value].latitude;
 		this.lon = this.countries[e.target.value].longitude;
 		this.setData();
 	};
 
+	isLoading(turn:string){
+		switch(turn){
+			case "On": this.loading = "display: grid;"; break;
+			case "Off": this.loading = "display: none;"; break;
+			default: break;
+		};
+	};
 };
 
 // For deployment, change the '../assets' paths in:
