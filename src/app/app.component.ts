@@ -8,6 +8,7 @@ import { StoreService } from "./services/store.service";
 })
 export class AppComponent {
 	data:any;
+	hour:number;
 
 	constructor(public store: StoreService){
 		store.getData().subscribe((data:any) => {
@@ -18,6 +19,20 @@ export class AppComponent {
 	
 	// This function is to format info getted by the API
 	private setInfo(){
+		// Setting 'hour' variable as index based in current hour. It will be used to select the apropiate 'data.dataseries[hour]' property. Note: The default statement was assigned because at 00 hs, 'this.hour' gets undefined instead '7' (must be fixed).
+		let currentDate:Date = new Date();
+		switch(currentDate.getHours()){
+			case (2 || 3 || 4): this.hour = 0; break;
+			case (5 || 6 || 7): this.hour = 1; break;
+			case (8 || 9 || 10): this.hour = 2; break;
+			case (11 || 12 || 13): this.hour = 3; break;
+			case (14 || 15 || 16): this.hour = 4; break;
+			case (17 || 18 || 19): this.hour = 5; break;
+			case (20 || 21 || 22): this.hour = 6; break;
+			case (23 || 0 || 1): this.hour = 7; break;
+			default: this.hour = 7; break;
+		};
+
 		let dataLength:number = this.data.dataseries.length;
 		let j:number = 0;
 		for(let i = 0; i < dataLength; i++){
@@ -89,18 +104,6 @@ export class AppComponent {
 	};
 };
 
-// Object.keys(timepoint).length
-
-// switch(this.data.dataseries[i].weather){
-// 				case "clearday": this.data.dataseries[i].weather = "../assets/icons/sun.svg"; break;
-// 				case "clearnight": this.data.dataseries[i].weather = "../assets/icons/moon.svg"; break;
-// 				case "pcloudyday": this.data.dataseries[i].weather = "../assets/icons/partialsun.svg"; break;
-// 				case "pcloudynight": this.data.dataseries[i].weather = "../assets/icons/partialmoon.svg"; break;
-// 				case "mcloudyday":
-// 				case "mcloudynight": this.data.dataseries[i].weather = "../assets/icons/cloud.svg"; break;
-// 				case "cloudyday":
-// 				case "cloudynight": this.data.dataseries[i].weather = "../assets/icons/cloudy.svg"; break;
-// 				case "lightrainday": this.data.dataseries[i].weather = "../assets/icons/rainyday.svg"; break;
-// 				case "lightrainnight": this.data.dataseries[i].weather = "../assets/icons/rainynight.svg"; break;
-// 				default: this.data.dataseries[i].weather = "../assets/icons/rain.svg"; break;
-// 			};
+// For deployment, change the paths in:
+// 1- './src/app/app.component.html'
+// 2- './src/app/app.component.ts'

@@ -12,6 +12,9 @@ h2{
 /* - - - - E N D - G R I D - E N D - - - - */
 
 /* - - - - - S T Y L E S - - - - - */
+:host{
+	max-height: 210px;
+}
 h3{
 	font-size: 2em;
 }

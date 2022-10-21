@@ -3,32 +3,32 @@
 	<section class="place">
 		<h1>Weather App</h1>
 		<h2>BUENOS AIRES</h2>
-		<h3>{{data.dataseries[0].temp2m}}°C</h3>
+		<h3>{{data.dataseries[hour].temp2m}}°C</h3>
 	</section>
 	<section class="info">
 		<article>
 			<img src="../assets/icons/water.svg" alt="">
 			<p>Humidity</p>
-			<p>{{data.dataseries[0].rh2m}}%</p>
+			<p>{{data.dataseries[hour].rh2m}}%</p>
 		</article>
 		<article>
 			<img src="../assets/icons/airpressure.svg" alt="">
 			<p>Air Pressure</p>
-			<p>{{data.dataseries[0].msl_pressure}} Pa</p>
+			<p>{{data.dataseries[hour].msl_pressure}} Pa</p>
 		</article>
 		<article>
 			<img src="../assets/icons/snow.svg" alt="">
 			<p>Snow depth</p>
-			<p>{{data.dataseries[0].snow_depth}} cm</p>
+			<p>{{data.dataseries[hour].snow_depth}} cm</p>
 		</article>
 		<article>
 			<img src="../assets/icons/wind.svg" alt="">
 			<p>Wind Speed</p>
-			<p>{{data.dataseries[0].wind10m.speed}} km/h</p>
+			<p>{{data.dataseries[hour].wind10m.speed}} km/h</p>
 		</article>
 	</section>
 	<section class="cards">
-		<ng-container *ngFor="let items of data.dataseries; let i = index">
+		<ng-container *ngFor="let items of data.dataseries.slice(hour, hour+8); let i = index">
 			<app-card *ngIf="i < 8" [timepoint]="items.timepoint" [temp]="items.temp2m" [weather]="items.weather"></app-card>
 		</ng-container>
 	</section>

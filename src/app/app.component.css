@@ -43,6 +43,7 @@
 	grid-area: value;
 }
 .cards{
+	align-self: flex-end;
 	grid-area: cards;
 }
 /* - - - - E N D - G R I D - E N D - - - - */
