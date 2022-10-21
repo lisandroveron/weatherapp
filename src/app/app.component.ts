@@ -9,6 +9,7 @@ import { StoreService } from "./services/store.service";
 export class AppComponent {
 	data:any;
 	hour:number;
+	background:string;
 
 	constructor(public store: StoreService){
 		store.getData().subscribe((data:any) => {
@@ -19,7 +20,7 @@ export class AppComponent {
 	
 	// This function is to format info getted by the API
 	private setInfo(){
-		// Setting 'hour' variable as index based in current hour. It will be used to select the apropiate 'data.dataseries[hour]' property. Note: The default statement was assigned because at 00 hs, 'this.hour' gets undefined instead '7' (must be fixed).
+		// Setting 'hour' variable as index based in current hour. It will be used to select the apropiate 'data.dataseries[hour]' property. Note: The default statement was assigned because at 00 hs, 'this.hour' gets undefined instead '7' (must be fixed. Maybe order of '0' and '1' matters).
 		let currentDate:Date = new Date();
 		switch(currentDate.getHours()){
 			case (2 || 3 || 4): this.hour = 0; break;
@@ -31,6 +32,14 @@ export class AppComponent {
 			case (20 || 21 || 22): this.hour = 6; break;
 			case (23 || 0 || 1): this.hour = 7; break;
 			default: this.hour = 7; break;
+		};
+		// Setting background path for background image in the app
+		if(currentDate.getHours() >= 4 && currentDate.getHours() < 13){
+			this.background = "background-image: url('../assets/img/morning1.jpg');";
+		}else if(currentDate.getHours() >= 13 && currentDate.getHours() < 21){
+			this.background = "background-image: url('../assets/img/sunset.jpg');";
+		}else if(currentDate.getHours() >= 21 || currentDate.getHours() < 4){
+			this.background = "background-image: url('../assets/img/night.jpeg');";
 		};
 
 		let dataLength:number = this.data.dataseries.length;

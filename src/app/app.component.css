@@ -86,7 +86,7 @@
 	border: 1px solid grey;
 }
 .background, .appContainer{
-	background-image: url("../assets/img/sunset.jpg");
+	background-image: url("../assets/img/rain.png");
 	background-position: center;
 	background-size: cover;
 }
