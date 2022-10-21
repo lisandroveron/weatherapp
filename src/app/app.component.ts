@@ -148,7 +148,6 @@ export class AppComponent {
 	};
 
 	setCountry(e:any){
-		console.log(e);
 		this.country = this.countries[e.target.value].name;
 		this.lat = this.countries[e.target.value].latitude;
 		this.lon = this.countries[e.target.value].longitude;
