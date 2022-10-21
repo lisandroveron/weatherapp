@@ -20,18 +20,33 @@ export class AppComponent {
 	
 	// This function is to format info getted by the API
 	private setInfo(){
-		// Setting 'hour' variable as index based in current hour. It will be used to select the apropiate 'data.dataseries[hour]' property. Note: The default statement was assigned because at 00 hs, 'this.hour' gets undefined instead '7' (must be fixed. Maybe order of '0' and '1' matters).
+		// Setting 'hour' variable as index based in current hour. It will be used to select the apropiate 'data.dataseries[hour]' property.
 		let currentDate:Date = new Date();
 		switch(currentDate.getHours()){
-			case (2 || 3 || 4): this.hour = 0; break;
-			case (5 || 6 || 7): this.hour = 1; break;
-			case (8 || 9 || 10): this.hour = 2; break;
-			case (11 || 12 || 13): this.hour = 3; break;
-			case (14 || 15 || 16): this.hour = 4; break;
-			case (17 || 18 || 19): this.hour = 5; break;
-			case (20 || 21 || 22): this.hour = 6; break;
-			case (23 || 0 || 1): this.hour = 7; break;
-			default: this.hour = 7; break;
+			case 23:
+			case 0:
+			case 1: this.hour = 7; break;
+			case 2:
+			case 3:
+			case 4: this.hour = 0; break;
+			case 5:
+			case 6:
+			case 7: this.hour = 1; break;
+			case 8:
+			case 9:
+			case 10: this.hour = 2; break;
+			case 11:
+			case 12:
+			case 13: this.hour = 3; break;
+			case 14:
+			case 15:
+			case 16: this.hour = 4; break;
+			case 17:
+			case 18:
+			case 19: this.hour = 5; break;
+			case 20:
+			case 21:
+			case 22: this.hour = 6; break;
 		};
 		// Setting background path for background image in the app
 		if(currentDate.getHours() >= 4 && currentDate.getHours() < 13){
