@@ -28,6 +28,7 @@ export class AppComponent {
 	
 	setData(){
 		this.store.getData(this.lon, this.lat).subscribe((data:any) => {
+			console.log(data.dataseries[0].prec_amount);
 			this.data = data;
 			this.setInfo();
 			this.isLoading("Off");
@@ -100,9 +101,9 @@ export class AppComponent {
 						case 4:
 						case 5: this.data.dataseries[i].weather = "../assets/icons/partialmoon.svg"; break;
 						case 6:
-						case 7: this.data.dataseries[i].weather = "../assets/icons/cloud.svg"; break;
+						case 7: this.data.dataseries[i].weather = "../assets/icons/cloudy.svg"; break;
 						case 8:
-						case 9: this.data.dataseries[i].weather = "../assets/icons/cloudy.svg"; break;
+						case 9: this.data.dataseries[i].weather = "../assets/icons/rainynight.svg"; break;
 					};
 				}else if(this.data.dataseries[i].timepoint > 6 || this.data.dataseries[i].timepoint < 18){
 					// Day
@@ -113,17 +114,17 @@ export class AppComponent {
 						case 4:
 						case 5: this.data.dataseries[i].weather = "../assets/icons/partialsun.svg"; break;
 						case 6:
-						case 7: this.data.dataseries[i].weather = "../assets/icons/cloud.svg"; break;
+						case 7: this.data.dataseries[i].weather = "../assets/icons/cloudy.svg"; break;
 						case 8:
-						case 9: this.data.dataseries[i].weather = "../assets/icons/cloudy.svg"; break;
+						case 9: this.data.dataseries[i].weather = "../assets/icons/rainyday.svg"; break;
 					};
 				};
 			}else{
 				// Rain
 				if(this.data.dataseries[i].timepoint < 6 || this.data.dataseries[i].timepoint >= 18){
-					this.data.dataseries[i].weather = "assets/icons/rainynight.svg";
+					this.data.dataseries[i].weather = "assets/icons/rainynight2.svg";
 				}else{
-					this.data.dataseries[i].weather = "assets/icons/rainyday.svg";
+					this.data.dataseries[i].weather = "assets/icons/rainyday2.svg";
 				};
 			};
 			// Setting hour
