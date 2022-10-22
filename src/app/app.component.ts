@@ -120,9 +120,10 @@ export class AppComponent {
 				};
 			}else{
 				// Rain
-				switch(this.data.dataseries[i].timepoint){
-					case (this.data.dataseries[i].timepoint <= 6 || this.data.dataseries[i].timepoint >= 18): this.data.dataseries[i].weather = "../assets/icons/rainynight.svg"; break;
-					case (this.data.dataseries[i].timepoint > 6 || this.data.dataseries[i].timepoint < 18): this.data.dataseries[i].weather = "../assets/icons/rainyday.svg"; break;
+				if(this.data.dataseries[i].timepoint < 6 || this.data.dataseries[i].timepoint >= 18){
+					this.data.dataseries[i].weather = "assets/icons/rainynight.svg";
+				}else{
+					this.data.dataseries[i].weather = "assets/icons/rainyday.svg";
 				};
 			};
 			// Setting hour
