@@ -28,7 +28,6 @@ export class AppComponent {
 	
 	setData(){
 		this.store.getData(this.lon, this.lat).subscribe((data:any) => {
-			console.log(data.dataseries[0].prec_amount);
 			this.data = data;
 			this.setInfo();
 			this.isLoading("Off");
@@ -92,7 +91,7 @@ export class AppComponent {
 			};
 			// Setting icon URL
 			if(this.data.dataseries[i].prec_amount < 4){
-				if(this.data.dataseries[i].timepoint <= 6 || this.data.dataseries[i].timepoint >= 18){
+				if(this.data.dataseries[i].timepoint < 6 || this.data.dataseries[i].timepoint >= 18){
 					// Night
 					switch(this.data.dataseries[i].cloudcover){
 						case 1:
@@ -105,7 +104,7 @@ export class AppComponent {
 						case 8:
 						case 9: this.data.dataseries[i].weather = "../assets/icons/rainynight.svg"; break;
 					};
-				}else if(this.data.dataseries[i].timepoint > 6 || this.data.dataseries[i].timepoint < 18){
+				}else if(this.data.dataseries[i].timepoint >= 6 || this.data.dataseries[i].timepoint < 18){
 					// Day
 					switch(this.data.dataseries[i].cloudcover){
 						case 1:
@@ -122,9 +121,9 @@ export class AppComponent {
 			}else{
 				// Rain
 				if(this.data.dataseries[i].timepoint < 6 || this.data.dataseries[i].timepoint >= 18){
-					this.data.dataseries[i].weather = "assets/icons/rainynight2.svg";
+					this.data.dataseries[i].weather = "../assets/icons/rainynight2.svg";
 				}else{
-					this.data.dataseries[i].weather = "assets/icons/rainyday2.svg";
+					this.data.dataseries[i].weather = "../assets/icons/rainyday2.svg";
 				};
 			};
 			// Setting hour

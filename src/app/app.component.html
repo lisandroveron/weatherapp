@@ -38,8 +38,8 @@
 		</article>
 	</section>
 	<section class="cards">
-		<ng-container *ngFor="let items of data.dataseries.slice(hour, hour+8); let i = index">
-			<app-card *ngIf="i < 8" [timepoint]="items.timepoint" [temp]="items.temp2m" [weather]="items.weather"></app-card>
+		<ng-container *ngFor="let items of data.dataseries.slice(0, 8); let i = index">
+			<app-card [timepoint]="items.timepoint" [temp]="items.temp2m" [weather]="items.weather"></app-card>
 		</ng-container>
 	</section>
 </div>
